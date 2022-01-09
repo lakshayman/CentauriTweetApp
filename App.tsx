@@ -19,12 +19,34 @@ import {
 const App = () => {
   const [text, setText] = useState('');
   const [borderColor,setBColor] = useState('black');
+
+  const styles = StyleSheet.create({
+    container: {
+      display: 'flex', 
+      height: '100%', 
+      justifyContent: 'center'
+    },
+    inputArea: {
+      padding: 20,
+      height: 300,
+      borderWidth: 5, 
+      margin: 10, 
+      borderRadius: 20, 
+      textAlign: 'center', 
+      borderColor: borderColor,
+    },
+    bottomText: {
+      textAlign: 'center', 
+      fontSize: 20
+    },
+  });
+
   return (
-    <View style={{display: 'flex', height: '100%', justifyContent: 'center'}}>
+    <View style={styles.container}>
       <TextInput 
         multiline
         value={text}
-        style={{padding: 20,height: 300, borderWidth: 5, margin: 10, borderRadius: 20, textAlign: 'center', borderColor: borderColor}}
+        style={styles.inputArea}
         onChangeText={(e)=>{
           setText(e);
           if(50 - e.length <= 20 && 50 - e.length >= 0){
@@ -36,28 +58,9 @@ const App = () => {
           }
         }}
       />
-      <Text style={{textAlign: 'center', fontSize: 20}}>Character Left: {50 - text.length}</Text>
+      <Text style={styles.bottomText}>Character Left: {50 - text.length}</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
